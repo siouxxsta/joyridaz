@@ -1070,14 +1070,14 @@ extern bool gbRenderWorld2;
 		DebugMenuAddVarBool8("Render", "Glass Cars cheat", &CustomPipes::gGlassCarsCheat, nil);
 extern bool gbRenderDebugEnvMap;
 		DebugMenuAddVarBool8("Render", "Show Env map", &gbRenderDebugEnvMap, nil);
-		DebugMenuAddVar("Render", "Neo Vehicle Shininess", &CustomPipes::VehicleShininess, nil, 0.1f, 0, 1.0f);
-		DebugMenuAddVar("Render", "Neo Vehicle Specularity", &CustomPipes::VehicleSpecularity, nil, 0.1f, 0, 1.0f);
+//		DebugMenuAddVar("Render", "Neo Vehicle Shininess", &CustomPipes::VehicleShininess, nil, 0.1f, 0, 1.0f);
+//		DebugMenuAddVar("Render", "Neo Vehicle Specularity", &CustomPipes::VehicleSpecularity, nil, 0.1f, 0, 1.0f);
 		DebugMenuAddVarBool8("Render", "Neo Ped Rim light enable", &CustomPipes::RimlightEnable, nil);
 		DebugMenuAddVar("Render", "Mult", &CustomPipes::RimlightMult, nil, 0.1f, 0, 1.0f);
-		DebugMenuAddVarBool8("Render", "Neo World Lightmaps enable", &CustomPipes::LightmapEnable, nil);
-		DebugMenuAddVar("Render", "Mult", &CustomPipes::LightmapMult, nil, 0.1f, 0, 1.0f);
-		DebugMenuAddVarBool8("Render", "Neo Road Gloss enable", &CustomPipes::GlossEnable, nil);
-		DebugMenuAddVar("Render", "Mult", &CustomPipes::GlossMult, nil, 0.1f, 0, 1.0f);
+//		DebugMenuAddVarBool8("Render", "Neo World Lightmaps enable", &CustomPipes::LightmapEnable, nil);
+//		DebugMenuAddVar("Render", "Mult", &CustomPipes::LightmapMult, nil, 0.1f, 0, 1.0f);
+//		DebugMenuAddVarBool8("Render", "Neo Road Gloss enable", &CustomPipes::GlossEnable, nil);
+//		DebugMenuAddVar("Render", "Mult", &CustomPipes::GlossMult, nil, 0.1f, 0, 1.0f);
 #endif
 		DebugMenuAddVarBool8("Debug Render", "Show Ped Paths", &gbShowPedPaths, nil);
 		DebugMenuAddVarBool8("Debug Render", "Show Car Paths", &gbShowCarPaths, nil);
@@ -1111,12 +1111,12 @@ extern bool gbRenderDebugEnvMap;
 #ifdef GTA_SCENE_EDIT
 		DebugMenuAddVarBool8("Debug", "Edit on", &CSceneEdit::m_bEditOn, nil);
 #endif
-		DebugMenuAddCmd("Debug", "Start Credits", CCredits::Start);
-		DebugMenuAddCmd("Debug", "Stop Credits", CCredits::Stop);
+		//DebugMenuAddCmd("Debug", "Start Credits", CCredits::Start);
+		//DebugMenuAddCmd("Debug", "Stop Credits", CCredits::Stop);
 
 #ifdef RELOADABLES
 // maybe put it back if we have more to reload 
-		DebugMenuAddCmd("Reload", "HUD.TXD", CHud::ReloadTXD);
+//		DebugMenuAddCmd("Reload", "HUD.TXD", CHud::ReloadTXD);
 #endif
 
 #ifdef MAP_ENHANCEMENTS
