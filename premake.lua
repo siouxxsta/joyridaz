@@ -19,17 +19,17 @@ workspace "gta-lcs-revamped"
 	staticruntime "off"
 	symbols "Full"
 
-	defines { "LIBRW", "RW_GL3", "AUDIO_OAL", "_CRT_SECURE_NO_WARNINGS", "_CRT_NONSTDC_NO_DEPRECATE"}
+	defines { "LIBRW", "RW_GL3", "AUDIO_OAL", "_CRT_NONSTDC_NO_DEPRECATE" }
 
 	filter "platforms:x64"
 		system "windows"
 		architecture "x86_64"
 
 	filter "configurations:Debug"
-		defines { "DEBUG" }
+		defines { "LCSR_DEBUG" }
 
 	filter "configurations:Release"
-		defines { "MASTER" }
+		defines { "LCSR_MASTER" }
 		optimize "Speed"
 		linktimeoptimization "On"
 
@@ -57,17 +57,21 @@ project "gta-lcs-revamped"
 	kind "WindowedApp"
 	language "C++"
 	cppdialect "C++17"
-	targetname "lcsr"
 	targetdir "bin/%{cfg.platform}/%{cfg.buildcfg}"
 	objdir "obj/%{cfg.platform}/%{cfg.buildcfg}"
 	characterset "MBCS"
 	dependson "librw"
+	
+	filter "configurations:Debug"
+		targetname "dbg"
+	
+	filter "configurations:Release"
+		targetname "lcsr"
 
-	files { "src/extras/GitSHA1.cpp" }
+	filter {}
 
-	prebuildcommands {
-		'pwsh -File "%{wks.location}..\\tools\\Write-GitHashHeader.ps1" -OutputFile "%{wks.location}..\\src\\extras\\GitSHA1.cpp"'
-	}
+	buildoptions { "/Zc:sizedDealloc-" }
+	linkoptions { "/SAFESEH:NO" }
 
 	local source_directories = {
 		"src", "src/fakerw", "src/animation",
@@ -81,20 +85,14 @@ project "gta-lcs-revamped"
 		"src/vehicles", "src/weapons", "src/extras"
 	}
 
-	for _, directory in ipairs(source_directories) do
-		files(add_source_files(directory))
-	end
-
-	includedirs { aap_librw }
-	for _, directory in ipairs(source_directories) do
-		includedirs { directory }
-	end
+	files { "src/extras/GitSHA1.cpp" }
 
 	includedirs {
-		"vendor/openal-soft/include",
-		"vendor/libsndfile/include",
 		"vendor/mpg123/include",
-		"vendor/glfw/include"
+		"vendor/libsndfile/include",
+		"vendor/openal-soft/include",
+		"vendor/glfw/include",
+		aap_librw
 	}
 
 	libdirs {
@@ -105,11 +103,24 @@ project "gta-lcs-revamped"
 		path.join(aap_librw, "lib/win-amd64-librw_gl3_glfw-oal/%{cfg.buildcfg}")
 	}
 
-	buildoptions { "/Zc:sizedDealloc-" }
-	linkoptions { "/SAFESEH:NO" }
-	ignoredefaultlibraries { "MSVCRT" }
-	targetextension ".exe"
+	prebuildcommands {
+		'pwsh -File "%{wks.location}/../tools/Write-GitHashHeader.ps1" -OutputFile "%{wks.location}/../src/extras/GitSHA1.cpp"'
+	}
 
+	postbuildcommands {
+		'{COPY} "%{cfg.targetdir}/%{cfg.targetname}.exe" "D:/Liberty City Stories Revamped/"',
+		'{COPY} "%{cfg.targetdir}/%{cfg.targetname}.pdb" "D:/Liberty City Stories Revamped/"'
+    }
+
+	for _, directory in ipairs(source_directories) do
+		files(add_source_files(directory))
+	end
+
+	for _, directory in ipairs(source_directories) do
+		includedirs { directory }
+	end
+
+	ignoredefaultlibraries { "MSVCRT" }
 	links { "rw", "OpenAL32", "libmpg123-0", "libsndfile-1", "opengl32", "glfw3", "winmm", "ws2_32" }
 	
   filter {}
