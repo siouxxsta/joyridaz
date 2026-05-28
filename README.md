@@ -1,7 +1,6 @@
-# Liberty City Stories: Revamped
-
-## 01. Overview
-**Liberty City Stories: Revamped** is an open-world crime sandbox inspired by the classic 3D-era reverse-engineering project *reLCS*.<br> 
+<h1 align="center">Liberty City Stories<br>Revamped</h1>
+  
+An open-world crime sandbox inspired by the classic 3D-era reverse-engineering project *reLCS*.<br> 
 This project aims to fully revive *Grand Theft Auto: Liberty City Stories*, re-engineering the 2000s underworld with `librw` performance, <br>
 native widescreen support, and classic mob-war aesthetics - while remaining open, moddable, and community-driven.
 
