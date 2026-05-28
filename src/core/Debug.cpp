@@ -6,7 +6,7 @@
 #include "main.h"
 #include "Text.h"
 
-bool gbDebugStuffInRelease = false;
+bool gbDebugStuffInRelease = true;
 
 #define DEBUG_X_POS (300)
 #define DEBUG_Y_POS (41)
