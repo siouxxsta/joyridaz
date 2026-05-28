@@ -99,10 +99,10 @@ bool gMultiplayerSuperBrakeOnPause = true;
 
 float FramesPerSecond = 30.0f;
 
-bool gbPrintShite = false;
+bool gbPrintShite = true;
 bool gbModelViewer;
 #ifdef TIMEBARS
-bool gbShowTimebars;
+bool gbShowTimebars = true;
 #endif
 #ifdef DRAW_GAME_VERSION_TEXT
 bool gbDrawVersionText; // Our addition, we think it was always enabled on !MASTER builds
